@@ -16,8 +16,8 @@
   "homepage": "https://github.com/bagistoplus/visual-debut",
   "repositories": [
     {
-      "type": "path",
-      "url": "../visual"
+      "type": "vcs",
+      "url": "https://github.com/codedbyfj/visual.git"
     }
   ],
   "authors": [
@@ -30,7 +30,7 @@
   "require": {
     "php": "^8.2",
     "illuminate/contracts": "^10.0||^11.0||^12.0",
-    "bagistoplus/visual": "^2.0@dev",
+    "bagistoplus/visual": "v3.x-dev",
     "livewire/livewire": "^3.7",
     "matthieumastadenis/couleur": "^0.1.2"
   },
