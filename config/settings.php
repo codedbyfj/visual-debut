@@ -18,7 +18,7 @@ return [
         'name' => 'visual-debut::shop.settings.colors',
         'settings' => [
             Settings\ColorScheme::make('default_scheme', 'Default Scheme')
-                ->default('default'),
+                ->default('studio'),
 
             Settings\ColorSchemeGroup::make('color_schemes', 'Color Schemes')
                 ->schemes(collect(glob(__DIR__ . '/schemes/*.php'))
@@ -30,10 +30,10 @@ return [
     [
         'name' => 'visual-debut::shop.settings.typography',
         'settings' => [
-            Settings\Font::make('default_font', 'Default font')->default('roboto')
+            Settings\Font::make('default_font', 'Default font')->default('outfit')
                 ->info('visual-debut::shop.settings.typography_info'),
-            Settings\Font::make('heading_font', 'Heading font')->default('roboto'),
-            Settings\Font::make('subheading_font', 'Subheading font')->default('roboto'),
+            Settings\Font::make('heading_font', 'Heading font')->default('outfit'),
+            Settings\Font::make('subheading_font', 'Subheading font')->default('outfit'),
 
             // Paragraph Preset
             Settings\Header::make('Paragraph'),

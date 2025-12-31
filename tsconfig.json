@@ -15,8 +15,17 @@
     "jsx": "preserve",
     "allowJs": true,
     "noEmit": true,
-    "types": ["node", "vite/client"]
+    "skipLibCheck": true,
+    "types": [
+      "vite/client"
+    ]
   },
-  "include": ["resources/assets/ts/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "build"]
+  "include": [
+    "resources/assets/ts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "build"
+  ]
 }

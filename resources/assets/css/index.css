@@ -59,6 +59,16 @@
 @import './typography.css' layer(components);
 @import './utilities.css' layer(base);
 
+:root {
+  --font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 1rem;
@@ -133,6 +143,8 @@
   scroll-snap-type: x proximity;
 }
 
-@utility scroll-snap-y-proximity {
-  scroll-snap-type: y proximity;
+@utility glass-panel {
+  background: color-mix(in oklab, var(--color-background) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in oklab, var(--color-on-background) 5%, transparent);
 }
