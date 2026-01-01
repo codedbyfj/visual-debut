@@ -112,6 +112,12 @@ class Tailwind
     /**
      * Build responsive CSS classes and inline styles for a CSS property
      *
+     * Tailwind v4 scanner might not pick up dynamic class names.
+     * Adding common utilities here for the scanner to find:
+     * h-[var(--logo-height)] tablet:h-[var(--logo-height)] desktop:h-[var(--logo-height)]
+     * h-[var(--height)] tablet:h-[var(--height)] desktop:h-[var(--height)]
+     * w-[var(--width)] tablet:w-[var(--width)] desktop:w-[var(--width)]
+     *
      * @param ResponsiveValue|mixed $value Responsive value
      * @param string $prefix Tailwind class prefix (e.g., 'w', 'h')
      * @param string $property CSS property name (e.g., 'width', 'height')
@@ -134,8 +140,8 @@ class Tailwind
                 : "--{$property}-{$breakpoint}";
 
             $className = $breakpoint === '_default'
-                ? "{$prefix}-(--{$property})"
-                : "{$breakpoint}:{$prefix}-(--{$property}-{$breakpoint})";
+                ? "{$prefix}-[var({$varName})]"
+                : "{$breakpoint}:{$prefix}-[var({$varName})]";
 
             $classes[] = $className;
             $styles[] = "{$varName}: {$val}{$unit}";

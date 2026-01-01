@@ -9,7 +9,7 @@
     $logoData = \BagistoPlus\VisualDebut\Tailwind::buildResponsiveStyleFor(
         value: $logoHeight,
         prefix: 'h',
-        property: 'height',
+        property: 'logo-height',
         unit: 'px',
     );
 @endphp

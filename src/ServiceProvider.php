@@ -41,6 +41,8 @@ class ServiceProvider extends ThemeServiceProvider
 
     public function boot(): void
     {
+        $this->loadTranslationsFrom($this->getBasePath() . '/resources/lang', 'visual-debut');
+
         parent::boot();
 
         $this->bootVendorViews();

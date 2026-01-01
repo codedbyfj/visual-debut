@@ -1242,4 +1242,20 @@ return [
             ],
         ],
     ],
+    'logo' => [
+        'name' => 'Logo',
+        'description' => 'Site logo with adjustable size and image overrides',
+        'settings' => [
+            'images_header' => 'Images',
+            'logo_image_label' => 'Desktop Logo',
+            'logo_image_info' => 'Upload a custom logo for desktop screens',
+            'mobile_logo_image_label' => 'Mobile Logo',
+            'mobile_logo_image_info' => 'Upload a custom logo for mobile screens',
+            'sizing_header' => 'Sizing',
+            'logo_height_label' => 'Logo Height',
+            'logo_text_label' => 'Logo Text',
+            'logo_text_placeholder' => 'Enter brand name',
+            'logo_text_info' => 'Displayed when no logo image is provided',
+        ],
+    ],
 ];
