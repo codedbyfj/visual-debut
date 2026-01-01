@@ -3,8 +3,7 @@
         'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-neutral-100 hover:text-primary focus:outline-none';
 @endphp
 
-<div id="navigation" {{ $block->editor_attributes }} x-data="{ openItem: null }" x-navigation
-    class="hidden h-full items-center lg:flex">
+<div id="navigation" {{ $block->editor_attributes }} x-data x-navigation class="hidden h-full items-center lg:flex">
     <div class="relative">
         <ul class="flex flex-1 list-none items-center justify-center space-x-1">
             @foreach ($categories as $category)
@@ -14,14 +13,10 @@
                             {{ $category->name }}
                         </a>
                     @else
-                        <a href="{{ $category->url }}" class="{{ $itemClass }}"
-                            :class="{ 'bg-primary/10 text-primary': openItem === '{{ $category->id }}' }"
-                            x-navigation:item="{{ $category->id }}" @mouseenter="openItem = '{{ $category->id }}'"
-                            @mouseleave="openItem = null">
+                        <a href="{{ $category->url }}" class="{{ $itemClass }}" x-navigation:item="{{ $category->id }}">
                             {{ $category->name }}
                             <x-lucide-chevron-down
-                                class="ml-1.5 h-3 w-3 opacity-40 transition-transform group-hover:rotate-180"
-                                :class="{ 'rotate-180': openItem === '{{ $category->id }}' }" />
+                                class="ml-1.5 h-3 w-3 opacity-40 transition-transform group-hover:rotate-180" />
                         </a>
                     @endif
                 </li>
