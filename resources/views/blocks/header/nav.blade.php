@@ -1,6 +1,6 @@
 @php
     $itemClass =
-        'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-background/80 hover:text-primary focus:outline-none';
+        'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-primary/10 hover:text-primary focus:outline-none';
 @endphp
 
 <div id="navigation" {{ $block->editor_attributes }} x-data x-navigation class="hidden h-full items-center lg:flex">

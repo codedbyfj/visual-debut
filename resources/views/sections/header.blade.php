@@ -11,7 +11,7 @@
             <div class="flex items-center lg:hidden">
                 <x-shop::ui.drawer placement="start" title="Menu">
                     <x-slot:trigger>
-                        <button class="hover:bg-background/50 -ml-2 rounded-full p-2.5 transition-all"
+                        <button class="hover:bg-on-background/10 -ml-2 rounded-full p-2.5 transition-all"
                             aria-label="Open menu">
                             <x-lucide-menu class="h-6 w-6" />
                         </button>

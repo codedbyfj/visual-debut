@@ -4,7 +4,7 @@
     {{ $block->editor_attributes }}>
     <!-- Cart Button -->
     <button x-dropdown:trigger
-        class="group hover:bg-background/80 relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
+        class="group hover:bg-on-background/10 relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
         aria-label="cart preview">
         <x-lucide-shopping-bag class="h-5 w-5 transition-transform group-hover:scale-110" />
         @if (!$this->isCartEmpty() && $initialized)

@@ -2,7 +2,7 @@
     x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
     x-on:visual:block:deselect:{{ $block->id }}.window="$dropdown.open = false" @end_visual_design_mode>
     <button x-dropdown:trigger
-        class="group hover:bg-background/80 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
+        class="group hover:bg-on-background/10 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
         aria-label="user menu">
         @svg($block->settings->icon ?? 'lucide-user', ['class' => 'h-5 w-5 transition-transform group-hover:scale-110'])
     </button>
