@@ -45,7 +45,7 @@ class Logo extends SimpleBlock
                 ->min(10)
                 ->max(300)
                 ->step(1)
-                ->default(36)
+                ->default(48)
                 ->unit('px')
                 ->responsive(),
 
