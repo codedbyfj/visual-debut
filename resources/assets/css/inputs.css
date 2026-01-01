@@ -13,34 +13,34 @@ textarea,
 select {
   @apply bg-background;
   @apply appearance-none bg-no-repeat;
-  @apply w-full px-4;
+  @apply w-full px-5;
 
   height: var(--input-size);
 
-  border: var(--input-border-width) solid #0000;
-  border-color: var(--input-color);
-  border-radius: var(--input-radius);
-  box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset,
-    0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+  border: var(--input-border-width, 1px) solid var(--input-color);
+  border-radius: var(--input-radius, var(--radius-md));
+  box-shadow: 0 1px 2px 0 oklch(0 0 0 / 0.03);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   --input-size-base: 0.25rem;
-  --input-size: calc(var(--input-size-base, 0.25rem) * 10);
-  --input-color: color-mix(in oklab, var(--color-on-background) 20%, #0000);
+  --input-size: calc(var(--input-size-base) * 11);
+  --input-color: color-mix(in oklch, var(--color-on-background) 10%, transparent);
 
   &:focus,
   &:focus-within {
-    @apply outline-none border-transparent ring-2 ring-primary;
-    --input-color: var(--color-on-background);
+    @apply outline-none ring-2 ring-primary/20;
+    --input-color: var(--color-primary);
+    background-color: var(--color-surface);
   }
 
   &:is(:disabled, [disabled]) {
-    @apply border-surface bg-surface text-on-background/40 placeholder-on-background/20 disabled:cursor-not-allowed;
+    @apply border-surface bg-surface-100 text-on-background/40 placeholder-on-background/20 disabled:cursor-not-allowed;
     box-shadow: none;
   }
 }
 
 textarea {
-  @apply py-3 h-auto;
+  @apply py-4 h-auto min-h-32;
 }
 
 select:is([multiple]) {

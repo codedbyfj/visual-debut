@@ -3,216 +3,121 @@
 }
 
 .btn {
-  @apply inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 text-center select-none;
+  @apply inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 text-center select-none;
   padding-inline: var(--btn-p);
   color: var(--btn-fg);
   background-color: var(--btn-bg);
   height: var(--btn-size);
   font-size: var(--btn-font-size, 0.875rem);
   font-weight: 600;
-  transition-property: color, background-color, border-color, box-shadow;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  transition-duration: 0.2s;
-  border-radius: var(--btn-radius, 0);
-  border-width: var(--btn-border-width);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--btn-radius, var(--radius-md));
+  border-width: var(--btn-border-width, 1px);
   border-style: solid;
   border-color: var(--btn-border);
+  box-shadow: 0 1px 2px 0 oklch(0 0 0 / 0.05);
 
-  --btn-p: 1rem;
+  --btn-p: 1.25rem;
   --btn-size-base: 0.25rem;
-  --btn-size: calc(var(--btn-size-base) * 10);
+  --btn-size: calc(var(--btn-size-base) * 11);
   --btn-fg: var(--color-on-background);
   --btn-bg: var(--btn-color, var(--color-surface));
-  --btn-border: color-mix(in oklab, var(--btn-bg), #000 calc(var(--depth, 1) * 5%));
+  --btn-border: color-mix(in oklab, var(--btn-bg), oklch(0 0 0) 5%);
 }
 
-.btn:hover {
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-surface)), #000 7%);
+.btn:hover:not(:disabled, [disabled]) {
+  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-surface)), oklch(0 0 0) 8%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px oklch(0 0 0 / 0.1), 0 2px 4px -2px oklch(0 0 0 / 0.1);
 }
 
 .btn:focus-visible {
-  @apply outline-none ring-2 ring-offset-2 ring-[var(--btn-color)];
+  @apply outline-none ring-2 ring-offset-2 ring-primary/40;
 }
 
-.btn:active {
-  translate: 0 0.5px;
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-surface)), #000 5%);
-  --btn-border: color-mix(in oklab, var(--btn-color, var(--color-surface)), #000 7%);
-  --btn-shadow: 0 0 0 0 oklch(0% 0 0/0), 0 0 0 0 oklch(0% 0 0/0);
-}
-
-.btn:disabled:not([loading]),
-.btn[disabled]:not([loading]) {
-  @apply pointer-events-none;
-  --btn-border: #0000;
-  --btn-fg: color-mix(in oklch, var(--color-on-background) 20%, #0000);
-}
-
-.btn:disabled:not(.btn-link, .btn-ghost, [loading]),
-.btn[disabled]:not(.btn-link, .btn-ghost, [loading]),
-.btn.btn-disabled:not(.btn-link, .btn-ghost, [loading]) {
-  @apply bg-on-background/10;
-  box-shadow: none;
-}
-
-.btn[loading] {
-  @apply pointer-events-none opacity-80;
+.btn:active:not(:disabled, [disabled]) {
+  transform: translateY(0);
+  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-surface)), oklch(0 0 0) 12%);
+  box-shadow: inset 0 2px 4px 0 oklch(0 0 0 / 0.06);
 }
 
 .btn-primary {
   --btn-color: var(--color-primary);
   --btn-fg: var(--color-on-primary);
+  --btn-border: color-mix(in oklab, var(--color-primary), oklch(0 0 0) 5%);
 }
 
 .btn-secondary {
   --btn-color: var(--color-secondary);
   --btn-fg: var(--color-on-secondary);
+  --btn-border: color-mix(in oklab, var(--color-secondary), oklch(0 0 0) 5%);
 }
 
 .btn-accent {
   --btn-color: var(--color-accent);
   --btn-fg: var(--color-on-accent);
+  --btn-border: color-mix(in oklab, var(--color-accent), oklch(0 0 0) 5%);
 }
 
-.btn-neutral {
-  --btn-color: var(--color-neutral);
-  --btn-fg: var(--color-on-neutral);
+.btn-soft {
+  --btn-bg: color-mix(in oklch, var(--btn-color, var(--color-primary)) 12%, transparent);
+  --btn-fg: var(--btn-color, var(--color-primary));
+  --btn-border: transparent;
 }
 
-.btn-info {
-  --btn-color: var(--color-info);
-  --btn-fg: var(--color-on-info);
+.btn-soft:hover:not(:disabled, [disabled]) {
+  --btn-bg: color-mix(in oklch, var(--btn-color, var(--color-primary)) 18%, transparent);
 }
 
-.btn-success {
-  --btn-color: var(--color-success);
-  --btn-fg: var(--color-on-success);
-}
-
-.btn-warning {
-  --btn-color: var(--color-warning);
-  --btn-fg: var(--color-on-warning);
-}
-
-.btn-danger {
-  --btn-color: var(--color-danger);
-  --btn-fg: var(--color-on-danger);
-}
-
-.btn-soft:not(:hover, :active, :disabled, [disabled]) {
-  --btn-fg: var(--btn-color, var(--color-on-background));
-  --btn-bg: color-mix(in oklab, var(--btn-color) 8%, var(--color-background));
-  --btn-border: color-mix(in oklab, var(--btn-color) 10%, var(--color-background));
-}
-
-.btn-soft:hover:not(:active, :disabled, [disabled]) {
-  --btn-fg: var(--btn-color);
-  --btn-bg: color-mix(in oklab, var(--btn-color) 18%, var(--color-background));
-  --btn-border: color-mix(in oklab, var(--btn-color) 20%, var(--color-background));
-}
-
-.btn-soft:active {
-  --btn-fg: var(--btn-color);
-  --btn-bg: color-mix(in oklab, var(--btn-color) 25%, var(--color-background));
-  --btn-border: color-mix(in oklab, var(--btn-color) 27%, var(--color-background));
-}
-
-.btn-outline:not(:hover, :active, :disabled, [disabled]) {
+.btn-outline {
   --btn-bg: transparent;
-  --btn-fg: var(--btn-color);
-  --btn-border: var(--btn-color);
-  border-width: max(1px, var(--btn-border-width, 1px));
+  --btn-fg: var(--btn-color, var(--color-primary));
+  --btn-border: var(--btn-color, var(--color-primary));
 }
 
-.btn-outline:hover:not(:active, :disabled, [disabled]) {
-  border-width: max(1px, var(--btn-border-width, 1px));
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-on-background)) 10%, var(--color-background));
-  --btn-fg: var(--btn-color);
-  --btn-border: var(--btn-color);
-}
-
-.btn-outline:active {
-  border-width: max(1px, var(--btn-border-width, 1px));
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-on-background)) 15%, var(--color-background));
-  --btn-fg: var(--btn-color);
-  --btn-border: var(--btn-color);
-}
-
-.btn-ghost:not(:hover, :active) {
+.btn-ghost {
   --btn-bg: transparent;
   --btn-border: transparent;
-  border-width: 0px;
-  --btn-fg: var(--btn-color);
+  --btn-fg: var(--btn-color, var(--color-primary));
 }
 
-.btn-ghost:hover:not(:active, :disabled, [disabled]) {
-  --btn-border: transparent;
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-on-background)) 7%, var(--color-background));
-  border-width: 0px;
-  --btn-fg: var(--btn-color);
-}
-
-.btn-ghost:active {
-  --btn-border: transparent;
-  --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-on-background)) 12%, var(--color-background));
-  border-width: 0px;
-  --btn-fg: var(--btn-color);
-}
-
-.btn-link {
-  --btn-border: transparent;
-  --btn-bg: transparent;
-  --btn-fg: var(--btn-color);
-  --btn-noise: none;
-  --btn-shadow: none;
-}
-
-.btn-link:is(.btn-active, :hover, :active:focus, :focus-visible) {
-  @apply underline;
-  --btn-border: transparent;
-  --btn-bg: transparent;
+.btn-ghost:hover:not(:disabled, [disabled]) {
+  --btn-bg: color-mix(in oklch, var(--btn-color, var(--color-primary)) 10%, transparent);
 }
 
 .btn-xs {
-  --btn-font-size: 0.6875rem;
-  --btn-p: 0.5rem;
-  --btn-size: calc(var(--btn-size-base) * 6);
-}
-
-.btn-sm {
   --btn-font-size: 0.75rem;
-  --btn-p: 0.75rem;
-  --btn-size: calc(var(--btn-size-base) * 8);
+  --btn-p: 0.5rem;
+  --btn-size: calc(var(--btn-size-base) * 7);
 }
-
+.btn-sm {
+  --btn-font-size: 0.8125rem;
+  --btn-p: 0.875rem;
+  --btn-size: calc(var(--btn-size-base) * 9);
+}
 .btn-md {
   --btn-font-size: 0.875rem;
-  --btn-p: 1rem;
-  --btn-size: calc(var(--btn-size-base) * 10);
-}
-
-.btn-lg {
-  --btn-font-size: 1.125rem;
   --btn-p: 1.25rem;
-  --btn-size: calc(var(--btn-size-base) * 12);
+  --btn-size: calc(var(--btn-size-base) * 11);
 }
-
-.btn-xl {
-  --btn-font-size: 1.375rem;
+.btn-lg {
+  --btn-font-size: 1rem;
   --btn-p: 1.5rem;
-  --btn-size: calc(var(--btn-size-base) * 14);
+  --btn-size: calc(var(--btn-size-base) * 13);
+}
+.btn-xl {
+  --btn-font-size: 1.125rem;
+  --btn-p: 2rem;
+  --btn-size: calc(var(--btn-size-base) * 16);
 }
 
 .btn-square {
   @apply px-0;
   width: var(--btn-size);
-  height: var(--btn-size);
 }
-
 .btn-circle {
   @apply rounded-full px-0;
   width: var(--btn-size);
-  height: var(--btn-size);
 }
 
 .btn-wide {
