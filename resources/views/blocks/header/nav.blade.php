@@ -15,7 +15,7 @@
                             class="{{ $itemClass }} text-on-background/80 hover:text-primary">
                             <span class="relative z-10">{{ $category->name }}</span>
                             <div
-                                class="absolute inset-y-2 inset-x-0 rounded-full bg-primary/10 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                class="absolute inset-y-2 inset-x-0 rounded-full bg-primary/20 opacity-0 transition-all duration-300 group-hover:opacity-100">
                             </div>
                         </a>
                     @else
@@ -23,7 +23,7 @@
                             x-on:mouseenter="openItem = '{{ $category->id }}'"
                             x-bind:class="openItem === '{{ $category->id }}' ? 'text-primary' : 'text-on-background/80'">
                             <span class="relative z-10">{{ $category->name }}</span>
-                            <div class="absolute inset-y-2 inset-x-0 rounded-full bg-primary/10 transition-all duration-300"
+                            <div class="absolute inset-y-2 inset-x-0 rounded-full bg-primary/20 transition-all duration-300"
                                 x-bind:class="openItem === '{{ $category->id }}' ? 'opacity-100' : 'opacity-0'"></div>
 
                             <x-lucide-chevron-down
@@ -44,56 +44,55 @@
         x-cloak>
 
         <div
-            class="w-[max(90vw,1200px)] max-w-7xl overflow-hidden rounded-[--radius-3xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
+            class="w-[80rem] overflow-hidden rounded-[--radius-4xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
             @foreach ($categories as $category)
                 @if ($category->children->isNotEmpty())
-                    <div x-show="openItem === '{{ $category->id }}'" class="grid grid-cols-12 items-stretch">
+                    <div x-show="openItem === '{{ $category->id }}'" class="flex w-full items-stretch min-h-[480px]">
                         <!-- Left Spotlight Panel -->
                         <div
-                            class="col-span-4 relative flex flex-col justify-end p-12 bg-neutral-50 border-r border-neutral-100 min-h-[400px]">
+                            class="relative flex w-[400px] flex-shrink-0 flex-col justify-end bg-neutral-50 p-16 border-r border-neutral-100">
                             @if ($category->logo_url || $category->banner_url)
                                 <div class="absolute inset-0 overflow-hidden">
                                     <img src="{{ $category->logo_url ?? $category->banner_url }}"
                                         class="h-full w-full object-cover grayscale opacity-20">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent">
+                                        class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent">
                                     </div>
                                 </div>
                             @endif
                             <div class="relative">
                                 <span
-                                    class="mb-2 block text-[10px] font-black uppercase tracking-[0.4em] text-primary">Signature
+                                    class="mb-3 block text-[10px] font-black uppercase tracking-[0.4em] text-primary">Signature
                                     Collection</span>
-                                <h3
-                                    class="text-5xl font-black italic tracking-tighter text-on-background leading-tight">
+                                <h3 class="text-6xl font-black italic tracking-tighter text-on-background leading-none">
                                     {{ $category->name }}</h3>
                                 <a href="{{ $category->url }}"
-                                    class="group/all mt-8 inline-flex items-center text-xs font-black uppercase tracking-widest text-primary">
-                                    Explore All
+                                    class="group/all mt-10 inline-flex items-center text-xs font-black uppercase tracking-widest text-primary">
+                                    Explore Entire Collection
                                     <x-lucide-arrow-right
-                                        class="ml-2 h-4 w-4 transition-transform group-hover/all:translate-x-2" />
+                                        class="ml-3 h-4 w-4 transition-transform group-hover/all:translate-x-2" />
                                 </a>
                             </div>
                         </div>
 
                         <!-- Right Categories Panel -->
-                        <div class="col-span-8 p-16 bg-white">
-                            <div class="grid grid-cols-3 gap-x-12 gap-y-10">
+                        <div class="flex-1 p-20 bg-white">
+                            <div class="grid grid-cols-3 gap-x-16 gap-y-12">
                                 @foreach ($category->children as $subCategory)
                                     <div class="group/sub">
                                         <a href="{{ $subCategory->url }}" class="block">
                                             <span
-                                                class="block text-lg font-black tracking-tight text-on-background transition-colors group-hover/sub:text-primary">
+                                                class="block text-xl font-black tracking-tight text-on-background transition-colors group-hover/sub:text-primary leading-tight">
                                                 {{ $subCategory->name }}
                                             </span>
                                             @if ($subCategory->description)
                                                 <span
-                                                    class="mt-2 block text-xs font-bold text-on-background/30 leading-relaxed line-clamp-2">
+                                                    class="mt-3 block text-sm font-bold text-on-background/20 leading-relaxed line-clamp-2">
                                                     {{ strip_tags($subCategory->description) }}
                                                 </span>
                                             @endif
                                             <div
-                                                class="mt-4 h-0.5 w-0 bg-primary transition-all duration-300 group-hover/sub:w-8">
+                                                class="mt-6 h-1 w-0 bg-primary transition-all duration-300 group-hover/sub:w-10">
                                             </div>
                                         </a>
                                     </div>
