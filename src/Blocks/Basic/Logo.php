@@ -31,7 +31,25 @@ class Logo extends SimpleBlock
     public static function settings(): array
     {
         return [
-            Text::make('logo_text', _t('blocks.logo.settings.logo_text_label'))
+            \BagistoPlus\Visual\Settings\Header::make(_t('blocks.logo.settings.images_header')),
+
+            \BagistoPlus\Visual\Settings\Image::make('logo_image', _t('blocks.logo.settings.logo_image_label'))
+                ->info(_t('blocks.logo.settings.logo_image_info')),
+
+            \BagistoPlus\Visual\Settings\Image::make('mobile_logo_image', _t('blocks.logo.settings.mobile_logo_image_label'))
+                ->info(_t('blocks.logo.settings.mobile_logo_image_info')),
+
+            \BagistoPlus\Visual\Settings\Header::make(_t('blocks.logo.settings.sizing_header')),
+
+            \BagistoPlus\Visual\Settings\Range::make('logo_height', _t('blocks.logo.settings.logo_height_label'))
+                ->min(20)
+                ->max(200)
+                ->step(1)
+                ->default(36)
+                ->unit('px')
+                ->responsive(),
+
+            \BagistoPlus\Visual\Settings\Text::make('logo_text', _t('blocks.logo.settings.logo_text_label'))
                 ->placeholder(_t('blocks.logo.settings.logo_text_placeholder'))
                 ->info(_t('blocks.logo.settings.logo_text_info')),
 
