@@ -9,27 +9,27 @@
 @endphp
 
 <div x-data x-number-input="@js($props)"
-    {{ $attributes->merge(['class' => 'flex items-center space-x-5']) }}>
+    {{ $attributes->merge(['class' => 'flex items-center gap-4']) }}>
     @if ($label)
-        <label x-input-number:label class="text-sm font-semibold tracking-tight text-on-background/80">
+        <label x-input-number:label class="text-xs font-black uppercase tracking-widest text-on-background/40">
             {{ $label }}
         </label>
     @endif
     <div
-        class="focus-within:ring-primary/30 flex items-center overflow-hidden rounded-[--radius-md] border border-on-background/10 bg-surface shadow-sm focus-within:ring-4 transition-all duration-200">
+        class="focus-within:border-primary/50 flex items-center overflow-hidden rounded-[--radius-full] border border-on-background/10 bg-surface shadow-sm transition-all duration-300">
         <button x-number-input:decrement-trigger
-            class="hover:bg-background/50 hover:text-primary disabled:opacity-30 flex h-10 w-10 items-center justify-center transition-all disabled:cursor-not-allowed"
+            class="group hover:bg-primary/10 hover:text-primary disabled:opacity-20 flex h-11 w-11 items-center justify-center transition-all disabled:cursor-not-allowed"
             type="button">
-            <x-lucide-minus class="h-4 w-4" />
+            <x-lucide-minus class="h-4 w-4 transition-transform group-active:scale-75" />
         </button>
 
         <input x-number-input:input
-            class="w-12 appearance-none border-x border-on-background/5 bg-transparent py-2 text-center text-sm font-bold focus:outline-none">
+            class="w-14 appearance-none border-none bg-transparent py-2 text-center text-sm font-black focus:outline-none focus:ring-0">
 
         <button x-number-input:increment-trigger
-            class="hover:bg-background/50 hover:text-primary disabled:opacity-30 flex h-10 w-10 items-center justify-center transition-all disabled:cursor-not-allowed"
+            class="group hover:bg-primary/10 hover:text-primary disabled:opacity-20 flex h-11 w-11 items-center justify-center transition-all disabled:cursor-not-allowed"
             type="button">
-            <x-lucide-plus class="h-4 w-4" />
+            <x-lucide-plus class="h-4 w-4 transition-transform group-active:scale-75" />
         </button>
     </div>
 </div>
