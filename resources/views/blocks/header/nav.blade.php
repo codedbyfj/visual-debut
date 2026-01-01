@@ -1,6 +1,6 @@
 @php
     $itemClass =
-        'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-neutral-100 hover:text-primary focus:outline-none';
+        'group inline-flex h-11 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-on-background/5 hover:text-primary aria-expanded:bg-primary/10 aria-expanded:text-primary focus:outline-none';
 @endphp
 
 <div id="navigation" {{ $block->editor_attributes }} x-data x-navigation class="hidden h-full items-center lg:flex">
@@ -30,7 +30,7 @@
         x-transition:leave-end="opacity-0 translate-y-4" class="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-4"
         x-cloak>
         <div
-            class="bg-surface/95 overflow-hidden rounded-[--radius-2xl] border border-on-background/10 shadow-2xl backdrop-blur-xl">
+            class="overflow-hidden rounded-[--radius-2xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
             @foreach ($categories as $category)
                 @if ($category->children->isNotEmpty())
                     @php $hasImage = $category->logo_url || $category->banner_url; @endphp
