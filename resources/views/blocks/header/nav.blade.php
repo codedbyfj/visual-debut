@@ -1,85 +1,79 @@
 @php
     $itemClass =
-        'group inline-flex h-11 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-white hover:shadow-sm hover:text-primary aria-expanded:bg-white aria-expanded:shadow-md aria-expanded:text-primary focus:outline-none';
+        'group inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-white hover:text-primary hover:shadow-sm focus:outline-none';
 @endphp
 
-<div id="navigation" {{ $block->editor_attributes }} x-data x-navigation
-    class="relative hidden h-full items-center lg:flex rounded-full bg-on-background/5 p-1">
-    <div class="h-full">
-        <ul class="flex h-full list-none items-center justify-center space-x-1">
-            @foreach ($categories as $category)
-                <li class="h-full flex items-center">
-                    @if ($category->children->isEmpty())
-                        <a href="{{ $category->url }}" class="{{ $itemClass }}">
-                            {{ $category->name }}
-                        </a>
-                    @else
-                        <a href="{{ $category->url }}"
-                            class="{{ $itemClass }} aria-expanded:bg-white aria-expanded:shadow-md aria-expanded:text-primary"
-                            x-navigation:item="{{ $category->id }}">
-                            {{ $category->name }}
-                            <x-lucide-chevron-down
-                                class="ml-1.5 h-3 w-3 opacity-40 transition-transform group-hover:rotate-180 group-aria-expanded:rotate-180" />
-                        </a>
-                    @endif
-                </li>
-            @endforeach
-        </ul>
-    </div>
+<div id="navigation" {{ $block->editor_attributes }} x-data="{ openItem: null }" x-navigation
+    class="relative hidden h-full items-center lg:flex">
 
-    <div x-navigation:dropdown x-transition:enter="transition ease-out duration-500"
-        x-transition:enter-start="opacity-0 translate-y-10 scale-95"
-        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-        x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-        x-transition:leave-end="opacity-0 translate-y-10 scale-95"
-        class="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-6" x-cloak>
+    <!-- Navigation Pill Container -->
+    <nav class="flex items-center space-x-1 rounded-full bg-neutral-100 p-1.5 shadow-inner">
+        @foreach ($categories as $category)
+            <div class="relative">
+                @if ($category->children->isEmpty())
+                    <a href="{{ $category->url }}" class="{{ $itemClass }}">
+                        {{ $category->name }}
+                    </a>
+                @else
+                    <button type="button" class="{{ $itemClass }}"
+                        x-bind:class="openItem === '{{ $category->id }}' ? 'bg-white text-primary shadow-sm' : ''"
+                        x-navigation:item="{{ $category->id }}" x-on:mouseenter="openItem = '{{ $category->id }}'"
+                        x-on:mouseleave="openItem = null">
+                        {{ $category->name }}
+                        <x-lucide-chevron-down class="ml-1.5 h-3.5 w-3.5 opacity-40 transition-transform"
+                            x-bind:class="openItem === '{{ $category->id }}' ? 'rotate-180' : ''" />
+                    </button>
+                @endif
+            </div>
+        @endforeach
+    </nav>
+
+    <!-- Mega Menu Dropdown -->
+    <div x-navigation:dropdown x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-4" class="absolute left-0 top-full z-50 pt-4"
+        style="min-width: 800px;" x-cloak>
+
         <div
-            class="min-w-[56rem] overflow-hidden rounded-[--radius-3xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
+            class="overflow-hidden rounded-[--radius-3xl] border border-neutral-200 bg-white shadow-2xl ring-1 ring-black/5">
             @foreach ($categories as $category)
                 @if ($category->children->isNotEmpty())
-                    @php $hasImage = $category->logo_url || $category->banner_url; @endphp
-                    <div x-navigation:section="{{ $category->id }}"
-                        class="{{ $hasImage ? 'max-w-6xl' : 'max-w-4xl' }} flex w-full items-stretch justify-start gap-x-12 p-12">
+                    <div x-navigation:section="{{ $category->id }}" class="flex w-full items-stretch gap-10 p-10">
+                        <!-- Featured Image Block -->
+                        @php $hasImage = $category->logo_url || $category->banner_url; @endphp
                         @if ($hasImage)
                             <div
-                                class="group/nav-img relative flex h-full min-h-[400px] w-80 flex-shrink-0 items-end overflow-hidden rounded-[--radius-2xl] p-8 shadow-2xl transition-all duration-500 hover:shadow-primary/20">
+                                class="relative min-h-[300px] w-72 flex-shrink-0 overflow-hidden rounded-[--radius-2xl] shadow-lg">
                                 <img src="{{ $category->logo_url ?? $category->banner_url }}"
-                                    class="absolute inset-0 h-full w-full object-cover brightness-[0.4] transition-transform duration-1000 group-hover/nav-img:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-                                </div>
-                                <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
-                                <div class="relative space-y-4">
-                                    <h3 class="text-3xl font-black leading-tight tracking-tighter text-white">
-                                        {{ $category->name }}
+                                    class="absolute inset-0 h-full w-full object-cover brightness-50">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <div class="relative flex h-full items-end p-8">
+                                    <h3 class="text-3xl font-black text-white tracking-tighter">{{ $category->name }}
                                     </h3>
-                                    <x-shop::ui.button href="{{ $category->url }}" variant="primary" size="sm"
-                                        class="rounded-full px-8 shadow-lg shadow-primary/20">
-                                        Shop All
-                                    </x-shop::ui.button>
                                 </div>
                             </div>
                         @endif
 
+                        <!-- Category List -->
                         <div class="flex-1">
-                            <div class="mb-8 border-b border-on-background/5 pb-4">
-                                <span
-                                    class="text-on-surface/40 text-[11px] font-black uppercase tracking-[0.2em]">Explore
-                                    Categories</span>
+                            <div class="mb-6 flex items-center space-x-2">
+                                <div class="h-px w-8 bg-primary"></div>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-neutral-400">Discover
+                                    {{ $category->name }}</span>
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
+
+                            <div class="grid grid-cols-2 gap-4 text-left">
                                 @foreach ($category->children as $subCategory)
-                                    <a x-navigation:sub-item href="{{ $subCategory->url }}"
-                                        class="hover:bg-primary/5 group/sub block rounded-[--radius-2xl] p-6 transition-all duration-300">
+                                    <a href="{{ $subCategory->url }}"
+                                        class="group/sub flex flex-col rounded-[--radius-xl] p-4 transition-all hover:bg-neutral-50">
                                         <span
-                                            class="mb-2 block text-base font-bold tracking-tight text-on-surface group-hover/sub:text-primary transition-colors">
+                                            class="text-sm font-bold text-neutral-900 group-hover/sub:text-primary transition-colors">
                                             {{ $subCategory->name }}
                                         </span>
                                         @if ($subCategory->description)
-                                            <span
-                                                class="text-on-surface/40 block text-xs font-medium leading-relaxed line-clamp-2">
-                                                {!! visual_clear_inline_styles($subCategory->description) !!}
+                                            <span class="mt-1 text-xs text-neutral-400 line-clamp-2 font-medium">
+                                                {!! strip_tags($subCategory->description) !!}
                                             </span>
                                         @endif
                                     </a>
