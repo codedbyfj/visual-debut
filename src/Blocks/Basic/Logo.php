@@ -42,10 +42,17 @@ class Logo extends SimpleBlock
             \BagistoPlus\Visual\Settings\Header::make(_t('blocks.logo.settings.sizing_header')),
 
             \BagistoPlus\Visual\Settings\Range::make('logo_height', _t('blocks.logo.settings.logo_height_label'))
-                ->min(20)
-                ->max(200)
+                ->min(10)
+                ->max(300)
                 ->step(1)
                 ->default(36)
+                ->unit('px')
+                ->responsive(),
+
+            \BagistoPlus\Visual\Settings\Range::make('logo_width', _t('blocks.logo.settings.logo_width_label'))
+                ->min(20)
+                ->max(600)
+                ->step(1)
                 ->unit('px')
                 ->responsive(),
 
