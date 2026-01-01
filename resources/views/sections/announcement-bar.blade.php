@@ -1,18 +1,10 @@
 @php
-    $variant = $section->settings->variant ?? 'primary';
-    $classes =
-        [
-            'primary' => 'bg-primary text-on-primary',
-            'secondary' => 'bg-secondary text-on-secondary',
-            'accent' => 'bg-accent text-on-accent',
-            'neutral' => 'bg-neutral text-on-neutral',
-        ][$section->settings->variant] ?? 'bg-primary text-on-primary';
+    $classes = 'bg-[#E32E2E] text-white';
 @endphp
 
 <div {{ $section->editor_attributes }} {{ $section->settings->scheme?->attributes() }}
-    class="{{ $classes }} relative overflow-hidden py-2 text-center text-[11px] font-black uppercase tracking-[0.2em]"
+    class="{{ $classes }} relative overflow-hidden py-3 text-center text-[11px] font-black uppercase tracking-[0.2em]"
     x-data="{ show: true }" x-show="show">
-    <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-30"></div>
 
     <div class="relative flex items-center justify-center gap-2">
         @if ($section->settings->link)

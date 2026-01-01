@@ -3,10 +3,9 @@
         $section->settings->content_width === 'container' ? 'mx-auto container' : 'px-4 sm:px-6 lg:px-8';
 @endphp
 
-<footer {{ $section->editor_attributes }}
-    class="bg-on-background/10 text-on-background/60 border-t border-on-background/5">
-    <div class="{{ $contentWidthClass }} section-padding">
-        <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+<footer {{ $section->editor_attributes }} class="bg-[#0B1120] text-white/70 border-t border-white/5">
+    <div class="{{ $contentWidthClass }} py-20">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-8">
             @children
         </div>
 

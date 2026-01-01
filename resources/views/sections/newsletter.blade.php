@@ -1,14 +1,11 @@
-<div {{ $section->editor_attributes }} class="section-padding relative overflow-hidden bg-primary/5">
-    <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl"></div>
-    <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl"></div>
-
+<div {{ $section->editor_attributes }} class="py-24 relative overflow-hidden bg-[#E32E2E]">
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-            <h2 class="text-gradient mb-6 text-4xl font-bold tracking-tight sm:text-5xl"
+        <div class="mx-auto max-w-4xl text-center">
+            <h2 class="mb-8 text-4xl font-black uppercase tracking-tight sm:text-6xl text-white"
                 {{ $section->liveUpdate()->text('heading') }}>
                 {{ $section->settings->heading }}
             </h2>
-            <div class="text-on-surface/60 mx-auto mb-12 text-lg leading-relaxed"
+            <div class="text-white/80 mx-auto mb-16 text-xl font-medium leading-relaxed"
                 {{ $section->liveUpdate()->html('description') }}>
                 {!! $section->settings->description !!}
             </div>
