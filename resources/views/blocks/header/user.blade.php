@@ -2,7 +2,7 @@
     x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
     x-on:visual:block:deselect:{{ $block->id }}.window="$dropdown.open = false" @end_visual_design_mode>
     <button x-dropdown:trigger
-        class="hover:bg-background/80 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
+        class="group hover:bg-background/80 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
         aria-label="user menu">
         @svg($block->settings->icon ?? 'lucide-user', ['class' => 'h-5 w-5 transition-transform group-hover:scale-110'])
     </button>
@@ -21,7 +21,7 @@
                     {!! $block->settings->guest_description !!}
                 </p>
                 <div class="grid gap-3">
-                    <x-shop::ui.button href="{{ route('shop.customer.session.create') }}" variant="primary" class="h-11">
+                    <x-shop::ui.button href="{{ route('shop.customer.session.create') }}" color="primary" class="h-11">
                         @lang('visual-debut::sections.header.blocks.user.sign-in')
                     </x-shop::ui.button>
                     <x-shop::ui.button variant="outline" href="{{ route('shop.customers.register.index') }}" class="h-11">

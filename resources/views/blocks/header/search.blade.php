@@ -1,7 +1,7 @@
 <div {{ $block->editor_attributes }} id="search-form">
     <div x-data="{ showSearch: false }">
         <button
-            class="hover:bg-background/80 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
+            class="group hover:bg-background/80 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
             aria-label="Search" x-on:click="showSearch = !showSearch">
             @svg($block->settings->search_icon ?? 'lucide-search', ['class' => 'h-5 w-5 transition-transform group-hover:scale-110'])
         </button>

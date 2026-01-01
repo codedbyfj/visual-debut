@@ -1,4 +1,4 @@
-<div {{ $section->editor_attributes }} class="relative overflow-hidden bg-primary/5 py-24">
+<div {{ $section->editor_attributes }} class="section-padding relative overflow-hidden bg-primary/5">
     <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl"></div>
     <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl"></div>
 

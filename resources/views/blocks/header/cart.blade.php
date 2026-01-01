@@ -4,7 +4,7 @@
     {{ $block->editor_attributes }}>
     <!-- Cart Button -->
     <button x-dropdown:trigger
-        class="hover:bg-background/80 relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
+        class="group hover:bg-background/80 relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300"
         aria-label="cart preview">
         <x-lucide-shopping-bag class="h-5 w-5 transition-transform group-hover:scale-110" />
         @if (!$this->isCartEmpty() && $initialized)
@@ -112,9 +112,8 @@
                     </span>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="grid gap-2 pt-1">
-                    <x-shop::ui.button block href="{{ route('shop.checkout.onepage.index') }}" variant="primary"
+                    <x-shop::ui.button block href="{{ route('shop.checkout.onepage.index') }}" color="primary"
                         class="h-12 shadow-lg shadow-primary/20">
                         @lang('shop::app.checkout.cart.mini-cart.continue-to-checkout')
                     </x-shop::ui.button>
