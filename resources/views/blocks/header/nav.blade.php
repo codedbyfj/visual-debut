@@ -1,6 +1,6 @@
 @php
     $itemClass =
-        'group inline-flex h-8 items-center justify-center rounded-full px-4 text-xs font-black uppercase tracking-widest transition-all duration-300 hover:bg-white hover:text-primary hover:shadow-sm focus:outline-none';
+        'group inline-flex h-8 items-center justify-center rounded-full px-4 text-xs font-black uppercase tracking-widest transition-all duration-300 hover:bg-primary/10 hover:text-primary focus:outline-none';
 @endphp
 
 <div id="navigation" {{ $block->editor_attributes }} x-data="{ openItem: null }" x-navigation
@@ -16,7 +16,7 @@
                     </a>
                 @else
                     <button type="button" class="{{ $itemClass }}"
-                        x-bind:class="openItem === '{{ $category->id }}' ? 'bg-white text-primary shadow-sm' : ''"
+                        x-bind:class="openItem === '{{ $category->id }}' ? 'bg-primary/10 text-primary' : ''"
                         x-navigation:item="{{ $category->id }}" x-on:mouseenter="openItem = '{{ $category->id }}'"
                         x-on:mouseleave="openItem = null">
                         {{ $category->name }}
