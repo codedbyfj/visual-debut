@@ -24,14 +24,14 @@
                 'w-auto object-contain transition-transform group-hover:scale-105',
                 'hidden sm:inline' => $logoMobile,
             ])
-                style="{{ implode(';', $logoData['styles']) }}" />
+                style="height: var(--logo-height); {{ implode(';', $logoData['styles']) }}" />
 
             @if ($logoMobile)
                 <img src="{{ $logoMobile }}" alt="{{ $logoText }}" @class([
                     $logoData['classes'],
                     'w-auto object-contain sm:hidden transition-transform group-hover:scale-105',
                 ])
-                    style="{{ implode(';', $logoData['styles']) }}" />
+                    style="height: var(--logo-height); {{ implode(';', $logoData['styles']) }}" />
             @endif
         @elseif ($logo = core()->getCurrentChannel()->logo_url)
             <span class="sr-only">{{ $logoText }}</span>
@@ -39,7 +39,7 @@
                 $logoData['classes'],
                 'w-auto object-contain transition-transform group-hover:scale-105',
             ])
-                style="{{ implode(';', $logoData['styles']) }}" />
+                style="height: var(--logo-height); {{ implode(';', $logoData['styles']) }}" />
         @else
             <span class="text-gradient text-3xl font-black tracking-tighter transition-all group-hover:opacity-80">
                 {{ $logoText }}

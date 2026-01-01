@@ -1258,4 +1258,18 @@ return [
             'logo_text_info' => 'Displayed when no logo image is provided',
         ],
     ],
+
+    // Fallbacks for title-cased keys seen in editor
+    'Blocks' => [
+        'Logo' => [
+            'Settings' => [
+                'Images_header' => 'Images',
+                'Logo_image_label' => 'Desktop Logo',
+                'Mobile_logo_image_label' => 'Mobile Logo',
+                'Sizing_header' => 'Sizing',
+                'Logo_height_label' => 'Logo Height',
+                'Logo_text_label' => 'Logo Text',
+            ],
+        ],
+    ],
 ];
