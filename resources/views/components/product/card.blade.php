@@ -32,7 +32,8 @@
             <!-- Hover Actions -->
             <div
                 class="absolute inset-x-4 bottom-4 z-20 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <div class="glass-panel flex items-center justify-center gap-2 rounded-2xl p-2 shadow-2xl">
+                <div
+                    class="bg-surface/90 border border-on-background/5 backdrop-blur-xl flex items-center justify-center gap-2 rounded-2xl p-2 shadow-2xl">
                     <livewire:add-to-cart-button :key="str()->random(16)" :product-id="$productResource['id']" size="md" circle />
 
                     @auth('customer')

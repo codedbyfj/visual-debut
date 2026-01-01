@@ -35,7 +35,8 @@
                 }
             }">
                 <div class="space-y-6 lg:col-span-2">
-                    <div class="glass-panel flex items-center justify-between rounded-[--radius-xl] p-5">
+                    <div
+                        class="bg-surface/95 border border-on-background/5 backdrop-blur-xl flex items-center justify-between rounded-[--radius-xl] p-5 shadow-sm">
                         <div class="flex items-center gap-4">
                             <input name="allSelected" type="checkbox" x-model="allSelected" x-on:click="toggleAll"
                                 class="h-6 w-6 rounded-md border-on-background/10 bg-background/50 text-primary focus:ring-primary/20">
@@ -54,7 +55,7 @@
                     <div class="space-y-4">
                         @foreach ($cart->items as $item)
                             <div
-                                class="glass-panel group/card overflow-hidden rounded-[--radius-xl] p-6 transition-all duration-300 hover:bg-surface/80">
+                                class="bg-surface/90 border border-on-background/5 backdrop-blur-xl group/card overflow-hidden rounded-[--radius-xl] p-6 transition-all duration-300 hover:bg-surface/100 shadow-sm">
                                 <div class="flex gap-8">
                                     <div class="flex items-center">
                                         <input type="checkbox" value="{{ $item->id }}" name="selected[]"
@@ -132,7 +133,8 @@
 
                 <div class="lg:col-span-1">
                     <div class="sticky top-32 space-y-6">
-                        <div class="glass-panel overflow-hidden rounded-[--radius-2xl] p-8 shadow-2xl">
+                        <div
+                            class="bg-surface/95 border border-on-background/5 backdrop-blur-xl overflow-hidden rounded-[--radius-2xl] p-8 shadow-2xl">
                             <h2 class="text-gradient mb-8 text-2xl font-black tracking-tight">
                                 @lang('shop::app.checkout.cart.summary.cart-summary')
                             </h2>

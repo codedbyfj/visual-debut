@@ -5,7 +5,7 @@
 @endphp
 
 <header {{ $section->editor_attributes }}
-    class="glass-panel sticky top-0 z-50 w-full border-b border-on-background/5 transition-all duration-300">
+    class="bg-surface/90 sticky top-0 z-50 w-full border-b border-on-background/5 backdrop-blur-xl transition-all duration-300">
     <div class="{{ $containerClass }}">
         <div class="flex min-h-[5rem] items-center justify-between gap-x-8 py-2">
             <div class="flex items-center lg:hidden">

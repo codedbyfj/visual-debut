@@ -1,9 +1,10 @@
 @php
     $itemClass =
-        'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-primary/10 hover:text-primary focus:outline-none';
+        'group inline-flex h-12 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-bold tracking-tight transition-all duration-300 hover:bg-neutral-100 hover:text-primary focus:outline-none';
 @endphp
 
-<div id="navigation" {{ $block->editor_attributes }} x-data x-navigation class="hidden h-full items-center lg:flex">
+<div id="navigation" {{ $block->editor_attributes }} x-data="{ openItem: null }" x-navigation
+    class="hidden h-full items-center lg:flex">
     <div class="relative">
         <ul class="flex flex-1 list-none items-center justify-center space-x-1">
             @foreach ($categories as $category)
@@ -13,10 +14,14 @@
                             {{ $category->name }}
                         </a>
                     @else
-                        <a href="{{ $category->url }}" class="{{ $itemClass }}" x-navigation:item="{{ $category->id }}">
+                        <a href="{{ $category->url }}" class="{{ $itemClass }}"
+                            :class="{ 'bg-primary/10 text-primary': openItem === '{{ $category->id }}' }"
+                            x-navigation:item="{{ $category->id }}" @mouseenter="openItem = '{{ $category->id }}'"
+                            @mouseleave="openItem = null">
                             {{ $category->name }}
                             <x-lucide-chevron-down
-                                class="ml-1.5 h-3 w-3 opacity-40 transition-transform group-hover:rotate-180" />
+                                class="ml-1.5 h-3 w-3 opacity-40 transition-transform group-hover:rotate-180"
+                                :class="{ 'rotate-180': openItem === '{{ $category->id }}' }" />
                         </a>
                     @endif
                 </li>
@@ -27,8 +32,10 @@
     <div x-navigation:dropdown x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 translate-y-4" class="absolute top-full z-50 pt-4" x-cloak>
-        <div class="glass-panel overflow-hidden rounded-[--radius-xl] shadow-2xl">
+        x-transition:leave-end="opacity-0 translate-y-4" class="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-4"
+        x-cloak>
+        <div
+            class="bg-surface/95 overflow-hidden rounded-[--radius-2xl] border border-on-background/10 shadow-2xl backdrop-blur-xl">
             @foreach ($categories as $category)
                 @if ($category->children->isNotEmpty())
                     @php $hasImage = $category->logo_url || $category->banner_url; @endphp
