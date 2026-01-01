@@ -40,17 +40,17 @@
     <div x-show="openItem" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 translate-y-4" class="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-6"
-        x-cloak>
+        x-transition:leave-end="opacity-0 translate-y-4"
+        class="fixed left-0 right-0 top-[80px] z-[60] flex justify-center px-10 pt-2" x-cloak>
 
         <div
-            class="w-[80rem] overflow-hidden rounded-[--radius-4xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
+            class="w-full max-w-7xl overflow-hidden rounded-[--radius-4xl] border border-on-background/10 bg-white shadow-2xl ring-1 ring-black/5">
             @foreach ($categories as $category)
                 @if ($category->children->isNotEmpty())
-                    <div x-show="openItem === '{{ $category->id }}'" class="flex w-full items-stretch min-h-[480px]">
+                    <div x-show="openItem === '{{ $category->id }}'" class="flex w-full items-stretch min-h-[500px]">
                         <!-- Left Spotlight Panel -->
                         <div
-                            class="relative flex w-[400px] flex-shrink-0 flex-col justify-end bg-neutral-50 p-16 border-r border-neutral-100">
+                            class="relative flex w-[420px] flex-shrink-0 flex-col justify-end bg-neutral-50 p-16 border-r border-neutral-100">
                             @if ($category->logo_url || $category->banner_url)
                                 <div class="absolute inset-0 overflow-hidden">
                                     <img src="{{ $category->logo_url ?? $category->banner_url }}"

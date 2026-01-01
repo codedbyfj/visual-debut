@@ -23,7 +23,7 @@
                 </x-shop::ui.drawer>
             </div>
 
-            <div class="flex flex-1 items-center justify-between gap-8">
+            <div class="flex h-full flex-1 items-center justify-between gap-8">
                 @children
             </div>
         </div>
